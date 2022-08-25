@@ -7,6 +7,10 @@ setup: ## installing conda virtualenv and install poetry in that enviroment
 		pip install --upgrade pip
 		pip install poetry
 
+.PHONY: build
+build:
+	docker build . -t backend:0.1.0
+
 .PHONY: deploy
 deploy:
 	docker run --rm -p 8000:8000 backend:0.1.0 uvicorn app:app --host 0.0.0.0 --reload
