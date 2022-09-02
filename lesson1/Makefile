@@ -9,8 +9,12 @@ setup: ## installing conda virtualenv and install poetry in that enviroment
 
 .PHONY: build
 build:
-	docker build . -t backend:0.1.0
+	docker build . -t "backend:$$(poetry version -s)"
 
 .PHONY: deploy
 deploy:
-	docker run --rm -p 8000:8000 backend:0.1.0 uvicorn app:app --host 0.0.0.0 --reload
+	docker run -d --rm -p 8000:8000 -v "$${PWD}"/backend:/app:ro --name backend "backend:$$(poetry version -s)"
+
+.PHONY: stop
+stop:
+	docker rm -f backend

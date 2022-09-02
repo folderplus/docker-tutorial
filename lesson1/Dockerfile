@@ -5,4 +5,4 @@ COPY ./poetry.lock poetry.lock
 COPY ./pyproject.toml pyproject.toml
 RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi --no-dev
 
-COPY ./backend /app
+CMD uvicorn app:app --host 0.0.0.0 --reload
