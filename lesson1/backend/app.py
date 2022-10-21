@@ -12,7 +12,7 @@ class Greeting(Document):
 async def init():
     # Create Motor client
     client = AsyncIOMotorClient(
-        "mongodb://admin-user:admin-password@192.168.6.63:27017"
+        "mongodb://admin-user:admin-password@mongo:27017"
     )
 
     # Initialize beanie with the Product document class and a database
